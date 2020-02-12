@@ -8,7 +8,8 @@
           v-for="(element, index) in unpicked"
           :key="index"
         >
-          {{ element.name }} 
+          <img v-bind:src="element.path">
+          {{element.name}}
         </div>
       </draggable>
 
@@ -19,6 +20,7 @@
           v-for="(element, index) in picked"
           :key="index"
         >
+        <img v-bind:src="element.path">
           {{ element.name }} 
         </div>
       </draggable>
@@ -30,6 +32,7 @@
 import draggable from 'vuedraggable';
 import {mapState, mapActions} from 'vuex';
 import {store} from '../store';
+
 
 export default {
   name: "ludus",
@@ -43,24 +46,30 @@ export default {
       unpicked: [
         {
           name: "épéiste",
+          path: require("..\\assets\\logo.png"),
         },
         {
           name: "lancier",
+          path: require("C:\\Users\\pc\\Desktop\\GOA\\gods-of-arena-front\\src\\assets\\logo.png"),
         },
         {
           name: "Archer",
+          path: "https://madewithvuejs.com/images/powered-madewithreactjs--white.png?1",
         },
         {
           name: "Cavalier",
+          path: "#",
         },
         {
           name: "Animal",
+          path: "#",
         },
       ],
       picked: [
       ],
       gladiators: [],
     };
+    
   },
   created() {
     // this.$http.get("/")
@@ -73,7 +82,7 @@ export default {
     ...mapActions(["setFightType"]),
     clone: function(el) {
       return {
-        name: el.name + " cloned"
+        name: el.name + "cloned"
       };
     },
     changeFightType() {
